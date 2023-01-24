@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TopBarModule } from './shared/modules/topBar/topBar.module';
 import { PersistanceService } from './shared/services/persistance.service';
 import { AuthInterceptor } from './shared/services/authInterceptor.service';
+import { GlobalFeedModule } from './globalFeed/globalFeed.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AuthInterceptor } from './shared/services/authInterceptor.service';
       trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
     }),
+    GlobalFeedModule
   ],
   providers: [
     PersistanceService,
