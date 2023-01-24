@@ -4,16 +4,35 @@ import { map, Observable } from 'rxjs';
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
 import { HttpClient } from '@angular/common/http';
 import { AuthResponseInterface } from '../types/authResponse.interface';
+import { LoginRequestInterface } from '../types/loginRequest.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  
+  getUser(response: AuthResponseInterface): CurrentUserInterface {
+    return response.user;
+  }
 
   register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
-    const url = 'https://conduit.productionready.io/api/users';
+    const url = 'https://api.realworld.io/api/users';
 
     return this.http
       .post<AuthResponseInterface>(url, data)
-      .pipe(map((response: AuthResponseInterface) => response.user));
+      .pipe(map(this.getUser));
+  }
+
+  login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
+    const url = 'https://api.realworld.io/api/users/login';
+
+    return this.http
+      .post<AuthResponseInterface>(url, data)
+      .pipe(map(this.getUser));
+  }
+
+  getCurrentUser(): Observable<CurrentUserInterface> {
+    const url = 'https://api.realworld.io/api/user';
+
+    return this.http.get<AuthResponseInterface>(url).pipe(map(this.getUser));
   }
 }
