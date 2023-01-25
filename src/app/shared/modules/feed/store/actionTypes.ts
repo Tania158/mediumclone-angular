@@ -1,5 +1,5 @@
 export enum ActionTypes {
-  GET_FEED = '[Auth] Get feed',
-  GET_FEED_SUCCESS = '[Auth] Get feed success',
-  GET_FEED_FAILURE = '[Auth] Get feed failure'
+  GET_FEED = '[Feed] Get feed',
+  GET_FEED_SUCCESS = '[Feed] Get feed success',
+  GET_FEED_FAILURE = '[Feed] Get feed failure'
 }
