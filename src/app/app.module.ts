@@ -15,6 +15,8 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { YourFeedModule } from './yourFeed/yourFeed.modules';
 import { TagFeedModule } from './tagFeed/tagFeed.module';
+import { ArticleModule } from './article/article.module';
+import { CreateArticleModule } from './createArticle/createArticle.module';
 
 @NgModule({
   declarations: [
@@ -35,10 +37,12 @@ import { TagFeedModule } from './tagFeed/tagFeed.module';
       trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
     }),
+    StoreRouterConnectingModule.forRoot(),
     GlobalFeedModule,
     YourFeedModule,
     TagFeedModule,
-    StoreRouterConnectingModule.forRoot()
+    CreateArticleModule,
+    ArticleModule
   ],
   providers: [
     PersistanceService,
