@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 import { ArticleInputInterface } from 'src/app/shared/types/articleInput.interface';
 import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
+import { createArticleAction } from '../../store/actions/createArticle.action';
+import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors';
 
 @Component({
   selector: 'app-create-article',
@@ -17,19 +19,18 @@ export class CreateArticleComponent implements OnInit {
     body: '',
     tagList: []
   }
-  isSubmitting$!: Observable<boolean>
+  isSubmitting$!: Observable<boolean | null>
   backendErrors$!: Observable<BackendErrorsInterface | null>
 
   constructor(private store: Store<AppStateInterface>) {}
 
   ngOnInit(): void {
-    // this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
-    // this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   onSubmit(articleInput: ArticleInputInterface): void {
-    console.log(articleInput)
-    // this.store.dispatch(createArticleAction({articleInput}))
+    this.store.dispatch(createArticleAction({articleInput}))
   }
 }
 // function createArticleAction(arg0: { articleInput: ArticleInputInterface; }): any {

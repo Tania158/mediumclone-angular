@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CreateArticleComponent } from './components/create-article/create-article.component';
 import { RouterModule } from '@angular/router';
 import { ArticleFormModule } from '../shared/modules/articleForm/articleForm.module';
+import { EffectsModule } from "@ngrx/effects";
+import { CreateArticleEffect } from "./store/effects/createArticle.effect";
+import { StoreModule } from "@ngrx/store";
+import { reducers } from "./store/reducers";
+import { CreateArticleService } from './services/createArticle.service';
 
 const routes = [
   {
@@ -12,8 +17,14 @@ const routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), ArticleFormModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ArticleFormModule,
+    EffectsModule.forFeature([CreateArticleEffect]),
+    StoreModule.forFeature('createArticle', reducers)
+  ],
   declarations: [CreateArticleComponent],
-  exports: [CreateArticleComponent],
+  providers: [CreateArticleService]
 })
 export class CreateArticleModule {}
