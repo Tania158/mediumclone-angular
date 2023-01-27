@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./article-form.component.scss']
 })
 export class ArticleFormComponent implements OnInit {
-  @Input('initialValues') initialValuesProps!: ArticleInputInterface;
+  @Input('initialValues') initialValuesProps!: ArticleInputInterface | null;
   @Input('isSubmitting') isSubmittingProps!: boolean | null;
   @Input('errors') errorsProps!: BackendErrorsInterface | null;
 
@@ -20,19 +20,25 @@ export class ArticleFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
   
   ngOnInit(): void {
-    this.initializeForm()
+    this.initializeForm();
   }
 
   initializeForm(): void {
-    this.form = this.fb.group({
-      title: this.initialValuesProps.title,
-      description: this.initialValuesProps.description,
-      body: this.initialValuesProps.body,
-      tagList: this.initialValuesProps.tagList.join(' ')
-    })
+    if (this.initialValuesProps !== null) {
+      this.form = this.fb.group({
+        title: this.initialValuesProps.title,
+        description: this.initialValuesProps.description,
+        body: this.initialValuesProps.body,
+        tagList: this.initialValuesProps.tagList.join(' ')
+      });
+      console.log(this.initialValuesProps.tagList)
+    }
   }
 
   onSubmit(): void {
-    this.articleSubmitEvent.emit(this.form.value)
+    this.form.value.tagList = this.form.value.tagList.split(' ');
+    this.articleSubmitEvent.emit(this.form.value);
+    console.log(this.initialValuesProps)
+    console.log(this.form.value);
   }
 }
