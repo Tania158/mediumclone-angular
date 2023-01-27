@@ -17,7 +17,7 @@ export class CreateArticleComponent implements OnInit {
     title: '',
     description: '',
     body: '',
-    tagList: []
+    tagList: ['']
   }
   isSubmitting$!: Observable<boolean | null>
   backendErrors$!: Observable<BackendErrorsInterface | null>
