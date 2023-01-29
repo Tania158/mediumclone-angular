@@ -11,6 +11,7 @@ import { ErrorMessageModule } from '../errorMessage/errorMessage.module';
 import { LoadingModule } from '../loading/loading.module';import { PaginationModule } from '../pagination/pagination.module';
 import { TagListModule } from '../tagList/tagList.module';
 import { AddToFavoritesModule } from '../addToFavorites/addToFavorites.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { AddToFavoritesModule } from '../addToFavorites/addToFavorites.module';
     LoadingModule,
     PaginationModule,
     TagListModule,
-    AddToFavoritesModule
+    AddToFavoritesModule,
+    ReactiveFormsModule
   ],
   declarations: [FeedComponent],
   exports: [FeedComponent],

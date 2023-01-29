@@ -1,7 +1,12 @@
 <div class="feed-toggle">
   <ul class="nav nav-pills outline-active">
-    <li class="nav-item" *ngIf="islLoggedIn$">
+    <li class="nav-item" *ngIf="islLoggedIn$ | async">
       <a [routerLink]="['/feed']" class="nav-link" routerLinkActive="active">
+        Your feed
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isAnonymous$ | async">
+      <a [routerLink]="['/login']" class="nav-link">
         Your feed
       </a>
     </li>
