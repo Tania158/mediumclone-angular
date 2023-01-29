@@ -30,6 +30,7 @@
     </a>
   </div>
   <app-pagination 
+    *ngIf="(feed$ | async)!.articlesCount > limit"
     [total]="(feed$ | async)!.articlesCount"
     [limit]="limit"
     [url]="baseUrl"
