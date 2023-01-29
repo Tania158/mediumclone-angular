@@ -21,7 +21,6 @@ export class GetUserProfileEffect {
           map((userProfile: ProfileInterface) => {
             return getUserProfileSuccessAction({userProfile})
           }),
-
           catchError(() => {
             return of(getUserProfileFailureAction())
           })
