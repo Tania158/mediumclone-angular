@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthResponseInterface } from '../types/authResponse.interface';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
 import { environment } from "src/environments/environment";
+import { CurrentUserInputInterface } from "src/app/shared/types/CurrentUserInput.interface";
+import { SettingsRequestInterface } from "src/app/settings/types/settingsRequest.Interface";
 
 @Injectable()
 export class AuthService {
@@ -36,5 +38,11 @@ export class AuthService {
     const url = environment.apiUrl + '/user';
 
     return this.http.get<AuthResponseInterface>(url).pipe(map(this.getUser));
+  }
+
+  updateCurrentUser(data: SettingsRequestInterface): Observable<CurrentUserInterface> {
+    const url = environment.apiUrl + '/user';
+
+    return this.http.put<AuthResponseInterface>(url, data).pipe(map(this.getUser));
   }
 }

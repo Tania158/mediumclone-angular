@@ -1,3 +1,4 @@
+import { routerNavigatedAction } from "@ngrx/router-store";
 import { Action, createReducer, on } from "@ngrx/store";
 import { EditArticleStateInterface } from "../types/editArticleState.interface";
 import { getArticleAction, getArticleFailureAction, getArticleSuccessAction } from "./actions/getArticle.action";
@@ -56,7 +57,8 @@ const editArticleReducer = createReducer(
       ...state,
       isLoading: false
     })
-  )
+  ),
+  on (routerNavigatedAction, (): EditArticleStateInterface => initialState)
 )
 
 export function reducers(state: EditArticleStateInterface, action: Action) {
