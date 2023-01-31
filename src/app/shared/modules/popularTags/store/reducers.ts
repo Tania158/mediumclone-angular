@@ -1,6 +1,7 @@
 import { PopularTagsStateInterface } from "../types/popularTagsState.interface";
 import { createReducer, on, Action } from '@ngrx/store';
 import { getPopularTagsAction, getPopularTagsSuccessAction, getPopularTagsFailureAction } from './action/getPopularTags.actions';
+import { routerNavigatedAction } from "@ngrx/router-store";
 
 const initialState: PopularTagsStateInterface = {
   isLoading: false,
@@ -31,7 +32,8 @@ const popularTagsReducer = createReducer(
       ...state,
       isLoading: false,
     })
-  )
+  ),
+  on (routerNavigatedAction, (): PopularTagsStateInterface => initialState)
 
 )
 

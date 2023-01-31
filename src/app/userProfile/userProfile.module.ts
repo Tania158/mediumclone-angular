@@ -8,6 +8,7 @@ import { StoreModule } from "@ngrx/store";
 import { reducers } from "./store/reducers";
 import { UserProfileService } from './services/userProfile.service';
 import { FeedModule } from '../shared/modules/feed/feed.module';
+import { FollowButtonModule } from "../shared/modules/followButton/followButton.module";
 
 const routes = [
   {
@@ -26,7 +27,8 @@ const routes = [
     RouterModule.forChild(routes),
     EffectsModule.forFeature([GetUserProfileEffect]),
     StoreModule.forFeature('userProfile', reducers),
-    FeedModule
+    FeedModule,
+    FollowButtonModule
   ],
   declarations: [UserProfileComponent],
   providers: [UserProfileService]

@@ -12,15 +12,18 @@ export class AddToFavoritesComponent implements OnInit {
   @Input('isFavorited') isFavoritedProps!: boolean;
   @Input('favoritesCount') favoritesCountProps!: number;
   @Input('articleSlug') articleSlugProps!: string;
+  @Input('displayPage') displayPageProps!: string;
 
   favoritesCount!: number;
   isFavorited!: boolean;
+  displayPage!: string;
 
   constructor(private store: Store<AppStateInterface>) { }
 
   ngOnInit(): void {
     this.favoritesCount = this.favoritesCountProps;
     this.isFavorited = this.isFavoritedProps;
+    this.displayPage = this.displayPageProps;
   }
 
   handleLike(): void {

@@ -12,6 +12,8 @@ import { LoadingModule } from '../shared/modules/loading/loading.module';
 import { TagListModule } from '../shared/modules/tagList/tagList.module';
 import { ArticleService } from './services/article.service';
 import { DeleteArticleEffect } from './store/effect/deleteArticle.effect';
+import { AddToFavoritesModule } from "../shared/modules/addToFavorites/addToFavorites.module";
+import { FollowButtonModule } from "../shared/modules/followButton/followButton.module";
 
 const routes = [
   {
@@ -28,7 +30,9 @@ const routes = [
     RouterModule.forChild(routes),
     ErrorMessageModule,
     LoadingModule,
-    TagListModule
+    TagListModule,
+    AddToFavoritesModule,
+    FollowButtonModule
   ],
   declarations: [ArticleComponent],
   providers: [SharedArticleService, ArticleService]
