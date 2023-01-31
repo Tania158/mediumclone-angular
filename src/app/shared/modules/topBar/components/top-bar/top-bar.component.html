@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']">
-      medium
+      conduit
     </a>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
@@ -11,19 +11,19 @@
       </li>
       <ng-container *ngIf="isLoggedIn$ | async">
         <li class="nav-item">
-          <a [routerLink]="['/articles/new']" class="nav-link">
+          <a [routerLink]="['/articles/new']" class="nav-link" routerLinkActive="active">
             <i class="ion-compose"></i>
             &nbsp; New Post
           </a>
         </li>
         <li class="nav-item">
-          <a [routerLink]="['/settings']" class="nav-link">
+          <a [routerLink]="['/settings']" class="nav-link" routerLinkActive="active">
             <i class="ion-gear-a"></i>
             &nbsp; Settings
           </a>
         </li>
         <li class="nav-item">
-          <a [routerLink]="['/profiles', (currentUser$ | async)?.username]" class="nav-link">
+          <a [routerLink]="['/profiles', (currentUser$ | async)?.username]" class="nav-link" routerLinkActive="active">
             <img class="user-pic" [src]="(currentUser$ | async)?.image" />
             &nbsp; {{ (currentUser$ | async)?.username }}
           </a>
@@ -31,12 +31,12 @@
       </ng-container>
       <ng-container *ngIf="isAnonymous$ | async">
         <li class="nav-item">
-          <a [routerLink]="['/login']" class="nav-link">
+          <a [routerLink]="['/login']" class="nav-link" routerLinkActive="active">
             Sign in
           </a>
         </li>
         <li class="nav-item">
-          <a [routerLink]="['/register']" class="nav-link">
+          <a [routerLink]="['/register']" class="nav-link" routerLinkActive="active">
             Sign up
           </a>
         </li>

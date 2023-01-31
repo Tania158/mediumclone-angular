@@ -8,5 +8,11 @@
   }"
 >
   <i class="ion-heart"></i>
-  <span>&nbsp; {{ favoritesCount }}</span>
+  <span *ngIf="displayPage === 'article-page'">
+    <span *ngIf="!isFavorited">&nbsp; Favorite</span>
+    <span *ngIf="isFavorited">&nbsp; Unfavorite</span>
+    Article
+    <span class="counter">( {{ favoritesCount }} )</span>
+  </span>
+  <span *ngIf="displayPage === 'feed-page'">&nbsp; {{ favoritesCount }}</span>
 </button>

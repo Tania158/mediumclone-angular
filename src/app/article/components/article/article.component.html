@@ -23,6 +23,21 @@
             Delete Article
           </button>
         </span>
+
+        <span *ngIf="!(isAuthor$ | async)">
+          <app-follow-button 
+            [profileSlug]="article.author.username"
+            [isFollowing]="article.author.following"
+          ></app-follow-button>
+
+          <app-add-to-favorites 
+            [isFavorited]="article.favorited"
+            [articleSlug]="article.slug"
+            [favoritesCount]="article.favoritesCount"
+            [displayPage]="'article-page'"
+          >
+          </app-add-to-favorites>
+        </span>
       </div>
     </div>
   </div>
