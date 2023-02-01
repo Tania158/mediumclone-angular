@@ -20,6 +20,7 @@ import { CreateArticleModule } from './createArticle/createArticle.module';
 import { EditArticleModule } from './editArticle/editArticle.module';
 import { SettingsModule } from './settings/settings.module';
 import { UserProfileModule } from './userProfile/userProfile.module';
+import { LayoutFooterModule } from './shared/modules/layoutFooter/layoutFooter.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { UserProfileModule } from './userProfile/userProfile.module';
     ArticleModule,
     EditArticleModule,
     SettingsModule,
-    UserProfileModule
+    UserProfileModule,
+    LayoutFooterModule
   ],
   providers: [
     PersistanceService,

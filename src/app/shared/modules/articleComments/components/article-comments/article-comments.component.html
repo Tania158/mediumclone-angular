@@ -1,0 +1,40 @@
+<div>
+  <!-- Error tag -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="card comment-form ng-untouched ng-pristine ng-valid">
+    <fieldset>
+      <div class="card-block">
+        <textarea class="form-control ng-untouched ng-pristine ng-valid" placeholder="Write a comment..."
+          rows="3" formControlName="body"
+        ></textarea>
+      </div>
+      <div class="card-footer">
+        <img class="comment-author-img" src="https://api.realworld.io/images/smiley-cyrus.jpeg" alt="Author image">
+        <button class="btn btn-sm btn-primary" type="submit" [disabled]="form.invalid">Post Comment</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<app-loading *ngIf="isLoading$ | async"></app-loading>
+<app-error-message *ngIf="error$ | async"></app-error-message>
+<div *ngIf="comments$ | async">
+  <div *ngFor="let comment of (comments$ | async)?.comments">
+    <div class="card">
+      <div class="card-block">
+        <p class="card-text">{{ comment.body }}</p>
+      </div>
+      <div class="card-footer">
+        <a class="comment-author" [routerLink]="['/profiles', comment.author.username]">
+          <img class="comment-author-img" [src]="comment.author.image">
+        </a>
+        &nbsp;
+        <a class="comment-author" [routerLink]="['/profiles', comment.author.username]">
+          {{ comment.author.username }}
+        </a>
+        <span class="date-posted">{{ comment.createdAt | date:'longDate' }}</span>
+        <span *ngIf="isAuthorProps" class="mod-options">
+          <i class="ion-trash-a"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

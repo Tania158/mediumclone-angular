@@ -31,14 +31,11 @@ export class ArticleFormComponent implements OnInit {
         body: this.initialValuesProps.body,
         tagList: this.initialValuesProps.tagList.join(' ')
       });
-      console.log(this.initialValuesProps.tagList)
     }
   }
 
   onSubmit(): void {
     this.form.value.tagList = this.form.value.tagList.split(' ');
     this.articleSubmitEvent.emit(this.form.value);
-    console.log(this.initialValuesProps)
-    console.log(this.form.value);
   }
 }

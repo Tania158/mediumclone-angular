@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { combineLatest, map, Observable, Subscription } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { currentUserSelector } from 'src/app/auth/store/selectors';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';

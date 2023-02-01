@@ -6,6 +6,7 @@ import { CreateArticleStateInterface } from 'src/app/createArticle/types/createA
 import { EditArticleStateInterface } from 'src/app/editArticle/types/editArticleState.interface';
 import { SettingsStateInterface } from '../../settings/types/settingsState.interface';
 import { UserProfileStateInterface } from 'src/app/userProfile/types/userProfileState.interface';
+import { ArticleCommentsStateInterface } from '../modules/articleComments/types/articleCommentsState.interface';
 
 export interface AppStateInterface {
   auth: AuthStateInterface;
@@ -16,4 +17,5 @@ export interface AppStateInterface {
   editArticle: EditArticleStateInterface;
   settings: SettingsStateInterface;
   userProfile: UserProfileStateInterface;
+  comments: ArticleCommentsStateInterface
 }

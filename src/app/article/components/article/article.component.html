@@ -4,14 +4,14 @@
       <h1>{{ article.title }}</h1>
       <div class="article-meta">
         <a [routerLink]="['/profiles', article.author.username]">
-          <img [src]="article.author.image" />
+          <img [src]="article.author.image"/>
         </a>
         <div class="info">
           <a [routerLink]="['/profiles', article.author.username]">
             {{ article.author.username }}
           </a>
           <span class="date">
-            {{ article.createdAt }}
+            {{ article.createdAt | date:'longDate' }}
           </span>
         </div>
         <span *ngIf="isAuthor$ | async">
@@ -51,6 +51,52 @@
           <p>{{ article.body }}</p>
         </div>
         <app-tag-list [tags]="article.tagList"></app-tag-list>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="article-actions">
+      <div class="article-meta">
+        <a [routerLink]="['/profiles', article.author.username]">
+          <img [src]="article.author.image" />
+        </a>
+        <div class="info">
+          <a [routerLink]="['/profiles', article.author.username]">
+            {{ article.author.username }}
+          </a>
+          <span class="date">
+            {{ article.createdAt | date:'longDate' }}
+          </span>
+        </div>
+        <span *ngIf="isAuthor$ | async">
+          <a [routerLink]="['/articles', article.slug, 'edit']" class="btn btn-outline-secondary btn-sm">
+            <i class="ion-edit"></i>
+            Edit Article
+          </a>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteArticle()">
+            Delete Article
+          </button>
+        </span>
+        
+        <span *ngIf="!(isAuthor$ | async)">
+          <app-follow-button [profileSlug]="article.author.username"
+            [isFollowing]="article.author.following"
+          ></app-follow-button>
+        
+          <app-add-to-favorites [isFavorited]="article.favorited" [articleSlug]="article.slug"
+            [favoritesCount]="article.favoritesCount" [displayPage]="'article-page'">
+          </app-add-to-favorites>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-8 offset-md-2">
+        <app-article-comments 
+          [articleSlug]="slug" 
+          [isAuthor]="(isAuthor$ | async)"
+        ></app-article-comments>
       </div>
     </div>
   </div>
