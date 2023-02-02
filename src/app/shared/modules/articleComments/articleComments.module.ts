@@ -10,16 +10,19 @@ import { reducers } from './store/reducers';
 import { ErrorMessageModule } from "../errorMessage/errorMessage.module";
 import { LoadingModule } from "../loading/loading.module";
 import { ReactiveFormsModule } from "@angular/forms";
+import { CreateArticleCommentEffect } from "./store/effect/createArticleComment.effect";
+import { BackendErrorMessagesModule } from "../backendErrorMessages/backendErrorMessages.module";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    EffectsModule.forFeature([GetArticleCommentsEffect]),
+    EffectsModule.forFeature([GetArticleCommentsEffect, CreateArticleCommentEffect]),
     StoreModule.forFeature('comments', reducers),
     ErrorMessageModule,
     LoadingModule,
     ReactiveFormsModule,
+    BackendErrorMessagesModule
   ],
   declarations: [ArticleCommentsComponent],
   exports: [ArticleCommentsComponent],
