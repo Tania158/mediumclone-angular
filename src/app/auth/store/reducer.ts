@@ -3,7 +3,7 @@ import { AuthStateInterface } from '../types/authState.interface';
 import { loginAction, loginSuccessAction, loginFailureAction } from './actions/login.action';
 import { registerAction, registerSuccessAction, registerFailureAction } from './actions/register.action';
 import { getCurrentUserAction, getCurrentUserSuccessAction, getCurrentUserFailureAction } from './actions/getCurrentUser.action';
-import { updateCurrentUserAction, updateCurrentUserSuccessAction } from './actions/updateCurrentUser.action';
+import { updateCurrentUserSuccessAction } from './actions/updateCurrentUser.action';
 import { logoutAction } from './actions/sync.action';
 
 const initialState: AuthStateInterface = {

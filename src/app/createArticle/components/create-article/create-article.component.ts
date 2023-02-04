@@ -33,7 +33,4 @@ export class CreateArticleComponent implements OnInit {
     this.store.dispatch(createArticleAction({articleInput}))
   }
 }
-// function createArticleAction(arg0: { articleInput: ArticleInputInterface; }): any {
-//   throw new Error('Function not implemented.');
-// }
 

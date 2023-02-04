@@ -1,0 +1,22 @@
+<div>
+  <app-backend-error-messages *ngIf="backendErrors$ | async"
+    [backendErrors]="backendErrors$ | async"
+  ></app-backend-error-messages>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="card comment-form ng-untouched ng-pristine ng-valid">
+    <fieldset>
+      <div class="card-block">
+        <textarea class="form-control ng-untouched ng-pristine ng-valid" placeholder="Write a comment..." rows="3"
+          formControlName="body"></textarea>
+      </div>
+      <div class="card-footer">
+        <img class="comment-author-img" src="https://api.realworld.io/images/smiley-cyrus.jpeg" alt="Author image">
+        <button class="btn btn-sm btn-primary" type="submit" [disabled]="form.invalid || (isSubmitting$ | async)">
+          Post Comment</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<app-article-comments 
+  [articleSlug]="articleSlug" 
+  [isAuthor]="isAuthor"
+></app-article-comments>
