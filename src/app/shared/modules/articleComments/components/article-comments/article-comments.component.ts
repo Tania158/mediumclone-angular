@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
 import { createArticleCommentAction } from '../../store/action/createArticleComment.action';
 import { ArticleCommentsInterface } from '../../types/articleComments.interface';
+import { deleteArticleCommentAction } from '../../store/action/deleteArticleComment.action';
 
 @Component({
   selector: 'app-article-comments',
@@ -82,6 +83,15 @@ export class ArticleCommentsComponent implements OnInit {
     this.store.dispatch(createArticleCommentAction({ slug: this.articleSlugProps, commentInput: this.form.value }));
     this.form.reset();
     this.initializeListeners();
+  }
+
+  deleteArticle(id: number): void {
+    this.store.dispatch(deleteArticleCommentAction({ slug: this.articleSlugProps, id: id }));
+    this.getAllCommentsAfterDelete(id);
+  }
+
+  getAllCommentsAfterDelete(id: number): void {
+    this.allComments = this.allComments.filter(comment => comment.id !== id);
   }
 
 }

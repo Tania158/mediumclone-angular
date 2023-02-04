@@ -12,12 +12,13 @@ import { LoadingModule } from "../loading/loading.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CreateArticleCommentEffect } from "./store/effect/createArticleComment.effect";
 import { BackendErrorMessagesModule } from "../backendErrorMessages/backendErrorMessages.module";
+import { DeleteArticleCommentEffect } from "./store/effect/deleteArticleComment.effect";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    EffectsModule.forFeature([GetArticleCommentsEffect, CreateArticleCommentEffect]),
+    EffectsModule.forFeature([GetArticleCommentsEffect, CreateArticleCommentEffect, DeleteArticleCommentEffect]),
     StoreModule.forFeature('comments', reducers),
     ErrorMessageModule,
     LoadingModule,

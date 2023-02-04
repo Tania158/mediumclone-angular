@@ -21,4 +21,10 @@ export class ArticleCommentsService {
 
     return this.http.post<CreateArticleCommentResponseInterface>(fullUrl, {comment: commentInput});
   }
+
+  deleteArticleComment(slug: string, id: number): Observable<{}> {
+    const fullUrl = `${environment.apiUrl}/articles/${slug}/comments/${id}`;
+
+    return this.http.delete<{}>(fullUrl);
+  }
 }
