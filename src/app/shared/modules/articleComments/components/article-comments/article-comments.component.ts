@@ -2,14 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 import { getArticleCommentsAction } from '../../store/action/getArticleComments.action';
-import { Observable } from 'rxjs';
-import { CreateArticleCommentResponseInterface, GetArticleCommentResponseInterface } from '../../types/getArticleCommentResponse.interface';
-import { articleCommentsSelector, errorSelector, isLoadingSelector, isSubmittingSelector, newArticleCommentsSelector, validationErrorsSelector } from '../../store/selectors';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
-import { createArticleCommentAction } from '../../store/action/createArticleComment.action';
+import { Observable, Subscription } from 'rxjs';
+import { GetArticleCommentResponseInterface } from '../../types/getArticleCommentResponse.interface';
+import { articleCommentsSelector, errorSelector, isLoadingSelector } from '../../store/selectors';
 import { ArticleCommentsInterface } from '../../types/articleComments.interface';
 import { deleteArticleCommentAction } from '../../store/action/deleteArticleComment.action';
+import { newArticleCommentsSelector } from '../../../createArticleComment/store/selectors';
+import { CreateArticleCommentResponseInterface } from '../../../createArticleComment/types/createArticleCommentResponse.interface';
 
 @Component({
   selector: 'app-article-comments',
@@ -24,18 +23,12 @@ export class ArticleCommentsComponent implements OnInit {
   isLoading$!: Observable<boolean>;
   error$!: Observable<string | null>;
   comments$!: Observable<GetArticleCommentResponseInterface | null>;
-  newComment$!: Observable<CreateArticleCommentResponseInterface | null>;
-  isSubmitting$!: Observable<boolean | null>;
-  backendErrors$!: Observable<BackendErrorsInterface | null>;
+  newComment!: Subscription;
 
   allComments!: ArticleCommentsInterface[];
 
 
-  form: FormGroup = this.fb.group({
-    body: ['']
-  });
-
-  constructor(private store: Store<AppStateInterface>, private fb: FormBuilder) { }
+  constructor(private store: Store<AppStateInterface>) { }
   
   ngOnInit(): void {
     this.initializeValues();
@@ -49,19 +42,16 @@ export class ArticleCommentsComponent implements OnInit {
   initializeValues(): void {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
-    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
     this.comments$ = this.store.pipe(select(articleCommentsSelector));
-    this.newComment$ = this.store.pipe(select(newArticleCommentsSelector));
     this.initializeListeners();
   }
 
   initializeListeners(): void {
-    this.comments$.subscribe((ArticleCommentsResponse: GetArticleCommentResponseInterface | null) => {
-      if (ArticleCommentsResponse?.comments) {
+    this.comments$.subscribe((articleCommentsResponse: GetArticleCommentResponseInterface | null) => {
+      if (articleCommentsResponse?.comments) {
         let allCommentsArr = [];
-        for (let i = ArticleCommentsResponse?.comments.length; i--;) {
-          allCommentsArr.push(ArticleCommentsResponse?.comments[i]);
+        for (let i = articleCommentsResponse?.comments.length; i--;) {
+          allCommentsArr.push(articleCommentsResponse?.comments[i]);
         }
         return this.getAllCommentsAfterSubmit(allCommentsArr);
       }
@@ -69,20 +59,16 @@ export class ArticleCommentsComponent implements OnInit {
   }
 
   getAllCommentsAfterSubmit(allCommentsArr: ArticleCommentsInterface[]) {
-    this.newComment$.subscribe((newCommentResponse: CreateArticleCommentResponseInterface | null) => {
-      if (newCommentResponse?.comment) {
-        allCommentsArr.unshift(newCommentResponse.comment);
-        this.allComments = allCommentsArr;
-      } else {
-        this.allComments = allCommentsArr;
-      }
-    });
-  }
-
-  onSubmit(): void {
-    this.store.dispatch(createArticleCommentAction({ slug: this.articleSlugProps, commentInput: this.form.value }));
-    this.form.reset();
-    this.initializeListeners();
+    this.newComment = this.store
+      .pipe(select(newArticleCommentsSelector))
+      .subscribe((resp: CreateArticleCommentResponseInterface | null) => {
+        if (resp?.comment) {
+          allCommentsArr.unshift(resp?.comment);
+          this.allComments = allCommentsArr;
+        } else {
+          this.allComments = allCommentsArr;
+        }
+    })
   }
 
   deleteArticle(id: number): void {

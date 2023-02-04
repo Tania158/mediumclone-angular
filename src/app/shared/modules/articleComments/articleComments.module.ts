@@ -9,21 +9,16 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { ErrorMessageModule } from "../errorMessage/errorMessage.module";
 import { LoadingModule } from "../loading/loading.module";
-import { ReactiveFormsModule } from "@angular/forms";
-import { CreateArticleCommentEffect } from "./store/effect/createArticleComment.effect";
-import { BackendErrorMessagesModule } from "../backendErrorMessages/backendErrorMessages.module";
 import { DeleteArticleCommentEffect } from "./store/effect/deleteArticleComment.effect";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    EffectsModule.forFeature([GetArticleCommentsEffect, CreateArticleCommentEffect, DeleteArticleCommentEffect]),
+    EffectsModule.forFeature([GetArticleCommentsEffect, DeleteArticleCommentEffect]),
     StoreModule.forFeature('comments', reducers),
     ErrorMessageModule,
-    LoadingModule,
-    ReactiveFormsModule,
-    BackendErrorMessagesModule
+    LoadingModule
   ],
   declarations: [ArticleCommentsComponent],
   exports: [ArticleCommentsComponent],

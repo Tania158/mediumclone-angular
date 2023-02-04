@@ -20,20 +20,3 @@ export const articleCommentsSelector = createSelector(
   articleCommentsFeatureSelector,
   (commentsState: ArticleCommentsStateInterface) => commentsState.data
 );
-
-export const isSubmittingSelector = createSelector(
-  articleCommentsFeatureSelector,
-  (commentsState: ArticleCommentsStateInterface) =>
-    commentsState.isSubmitting
-);
-
-export const newArticleCommentsSelector = createSelector(
-  articleCommentsFeatureSelector,
-  (commentsState: ArticleCommentsStateInterface) => commentsState.newComment
-);
-
-export const validationErrorsSelector = createSelector(
-  articleCommentsFeatureSelector,
-  (commentsState: ArticleCommentsStateInterface) =>
-    commentsState.validationErrors
-)
