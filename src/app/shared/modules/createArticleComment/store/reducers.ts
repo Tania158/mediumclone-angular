@@ -1,6 +1,7 @@
 import { CreateArticleCommentsStateInterface } from "../types/createArticleCommentState.interface";
 import { Action, createReducer, on } from '@ngrx/store';
 import { createArticleCommentAction, createArticleCommentFailureAction, createArticleCommentSuccessAction } from "./action/createArticleComment.action";
+import { routerNavigationAction } from "@ngrx/router-store";
 
 const initialState: CreateArticleCommentsStateInterface = {
   newComment: null,
@@ -33,6 +34,9 @@ const createArticleCommentReducer = createReducer(
       isSubmitting: false,
       validationErrors: action.errors
     })
+  ),
+  on(
+    routerNavigationAction, (): CreateArticleCommentsStateInterface => initialState
   )
 )
 

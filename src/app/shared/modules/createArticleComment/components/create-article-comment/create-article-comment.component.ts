@@ -16,13 +16,11 @@ import { isSubmittingSelector, validationErrorsSelector } from '../../store/sele
 export class CreateArticleCommentComponent implements OnInit {
 
   @Input('articleSlug') articleSlugProps!: string;
-  @Input('isAuthor') isAuthorProps!: boolean | null;
 
   isSubmitting$!: Observable<boolean | null>;
   backendErrors$!: Observable<BackendErrorsInterface | null>;
 
   articleSlug!: string;
-  isAuthor!: boolean | null;
 
   form: FormGroup = this.fb.group({
     body: ['']
@@ -33,7 +31,6 @@ export class CreateArticleCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.articleSlug = this.articleSlugProps;
-    this.isAuthor = this.isAuthorProps;
     this.initializeValues();
   }
 

@@ -15,7 +15,7 @@
           {{ comment.author.username }}
         </a>
         <span class="date-posted">{{ comment.createdAt | date:'longDate' }}</span>
-        <span *ngIf="isAuthorProps" class="mod-options" (click)="deleteArticle(comment.id)">
+        <span *ngIf="(isAuthorName$ | async) === comment.author.username" class="mod-options" (click)="deleteArticle(comment.id)">
           <i class="ion-trash-a"></i>
         </span>
       </div>
