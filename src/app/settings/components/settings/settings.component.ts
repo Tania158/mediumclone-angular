@@ -8,7 +8,6 @@ import { currentUserSelector } from 'src/app/auth/store/selectors';
 import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
-import { CurrentUserInputInterface } from 'src/app/shared/types/CurrentUserInput.interface';
 import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors';
 import { SettingsRequestInterface } from '../../types/settingsRequest.Interface';
 

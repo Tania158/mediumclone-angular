@@ -14,7 +14,6 @@ import { ArticleService } from './services/article.service';
 import { DeleteArticleEffect } from './store/effect/deleteArticle.effect';
 import { AddToFavoritesModule } from "../shared/modules/addToFavorites/addToFavorites.module";
 import { FollowButtonModule } from "../shared/modules/followButton/followButton.module";
-import { ArticleCommentModule } from "../shared/modules/articleComments/articleComments.module";
 import { CreateArticleCommentModule } from "../shared/modules/createArticleComment/createArticleComment.module";
 
 const routes = [

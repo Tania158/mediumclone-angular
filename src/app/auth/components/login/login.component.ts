@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
     const request: LoginRequestInterface = {
       user: this.form.value
     }

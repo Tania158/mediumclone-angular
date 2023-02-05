@@ -2,6 +2,7 @@
   <div class="container page">
     <div class="row">
       <div class="col-md-10 offset-md-1 col-cs-12">
+        <app-loading *ngIf="isLoadingProps"></app-loading>
         <app-backend-error-messages *ngIf="errorsProps" [backendErrors]="errorsProps"></app-backend-error-messages>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <fieldset>
@@ -20,6 +21,12 @@
             <fieldset class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="Enter tags"
                 formControlName="tagList" />
+                <div *ngIf="tagList.length" class="tag-list">
+                  <span class="tag-default tag-pill" *ngFor="let tag of tagList">
+                    <i class="ion-close-round" (click)="deleteTag(tag)"></i>
+                    {{ tag }}
+                  </span>
+                </div>
             </fieldset>
             <fieldset>
               <button type="submit" class="btn btn-lg pull-xs-right btn-primary"

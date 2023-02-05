@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { createEffect, Actions, ofType } from "@ngrx/effects";
-import { catchError, switchMap, tap } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { map, of } from 'rxjs';
 import { FeedService } from "../../services/feed.service";
 import { getFeedAction, getFeedSuccesAction, getFeedFailureAction } from '../action/getFeed.action';

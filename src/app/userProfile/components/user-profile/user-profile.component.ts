@@ -76,7 +76,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe((params: Params) => {
       this.slug = params['slug'];
-      console.log(this.slug)
       this.fetchUserProfile();
     })
   }

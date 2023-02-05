@@ -7,7 +7,6 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./tag-feed.component.scss']
 })
 export class TagFeedComponent implements OnInit {
-  // apiUrl = '/articles/tags';
   tagName!: string | null;
   apiUrl!: string;
   

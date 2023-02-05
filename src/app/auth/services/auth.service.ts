@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { AuthResponseInterface } from '../types/authResponse.interface';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
 import { environment } from "src/environments/environment";
-import { CurrentUserInputInterface } from "src/app/shared/types/CurrentUserInput.interface";
 import { SettingsRequestInterface } from "src/app/settings/types/settingsRequest.Interface";
 
 @Injectable()

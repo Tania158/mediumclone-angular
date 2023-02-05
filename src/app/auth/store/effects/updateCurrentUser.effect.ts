@@ -5,7 +5,6 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { map, of } from 'rxjs';
 import { CurrentUserInterface } from '../../../shared/types/currentUser.interface';
 import { HttpErrorResponse } from "@angular/common/http";
-import { PersistanceService } from '../../../shared/services/persistance.service';
 import { updateCurrentUserAction, updateCurrentUserSuccessAction, updateCurrentUserFailureAction } from '../actions/updateCurrentUser.action';
 
 @Injectable()
