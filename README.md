@@ -6,7 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Check it out!
 
 [deployed to Firebase](https://mediumclone-angular-605a4.web.app)
-Login and password for the test account
+
+#### Login and password for the test account:
+
 Login: testaccount@ukr.net, Password: 111222
 
 ## Built With
